@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>funny dog online!</title>
+    <script>
+        var titles = ["funny dog online!", "this dog is so funny!"];
+        var titleIndex = 0;
+        function toggleTitle() {
+            document.title = titles[titleIndex];
+            titleIndex = (titleIndex + 1) % titles.length;
+        }
+
+        setInterval(toggleTitle, 1000);
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080);
+            background-size: 400% 400%;
+            animation: rainbow 10s ease infinite;
+        }
+
+        @keyframes rainbow {
+            0% {
+                background-position: 0 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        img {
+            animation: spin 5s linear infinite; /* Adjust the duration and timing function as needed */
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<audio id="bgAudio" loop>
+    <source src="./funkytown.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+    <img src="funnydog.png" onclick="playAudio()">
+<script>
+    function playAudio() {
+        var audio = document.getElementById('bgAudio');
+        audio.play();
+        // Remove the onclick event to prevent multiple plays
+        document.querySelector('img').removeAttribute('onclick');
+    }
+</script>
+</body>
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('bgAudio').play();
+    });
+</script>
+
+</html>
+
