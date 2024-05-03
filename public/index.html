@@ -90,6 +90,7 @@
 
         // Start the background animation
         startBackgroundAnimation();
+        startTitleAnimation();
     }
 
     function startBackgroundAnimation() {
@@ -97,17 +98,20 @@
         setInterval(function() {
             document.body.style.backgroundImage = "url('" + backgrounds[index] + "')";
             index = (index + 1) % backgrounds.length;
-        }, 4000);
+        }, 950);
     }
 
-    // Title animation script
-    var titles = ["funny dog online!", "unny dog online! f", "nny dog online! fu", "ny dog online! fun", "y dog online! funny", "dog online! funny ", "og online! funny d", "g online! funny do", " online! funny dog", "online! funny dog ", "nline! funny dog o", "line! funny dog on", "ine! funny dog onl", "ne! funny dog onli", "e! funny dog onlin", "! funny dog online"];
-    var titleIndex = 0;
-    function toggleTitle() {
-        document.title = titles[titleIndex];
-        titleIndex = (titleIndex + 1) % titles.length;
+    function startTitleAnimation(){
+        // Title animation script
+        var titles = ["funny dog online!", "unny dog online! f", "nny dog online! fu", "ny dog online! fun", "y dog online! funny", "dog online! funny ", "og online! funny d", "g online! funny do", " online! funny dog", "online! funny dog ", "nline! funny dog o", "line! funny dog on", "ine! funny dog onl", "ne! funny dog onli", "e! funny dog onlin", "! funny dog online"];
+        var titleIndex = 0;
+        function toggleTitle() {
+            document.title = titles[titleIndex];
+            titleIndex = (titleIndex + 1) % titles.length;
+        }
+        setInterval(toggleTitle, 50);
     }
-    setInterval(toggleTitle, 50);
+    
 </script>
 
 <!-- Audio element -->
