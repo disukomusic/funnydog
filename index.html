@@ -5,17 +5,6 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>funny dog online!</title>
-    <script>
-        var titles = ["funny dog online!", "this dog is so funny!"];
-        var titleIndex = 0;
-        function toggleTitle() {
-            document.title = titles[titleIndex];
-            titleIndex = (titleIndex + 1) % titles.length;
-        }
-
-        setInterval(toggleTitle, 1000);
-    </script>
-
     <style>
         body {
             margin: 0;
@@ -24,22 +13,18 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080);
-            background-size: 400% 400%;
-            animation: rainbow 10s ease infinite;
+            background-color: #ffffff; /* Set plain white background initially */
+            background-size: 100px; /* Cover the entire viewport */
+            animation: none; /* No animation initially */
         }
 
-        @keyframes rainbow {
-            0% {
-                background-position: 0 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
+        .dog-img {
+            cursor: pointer; /* Add cursor pointer to indicate clickability */
         }
 
-        img {
-            animation: spin 5s linear infinite; /* Adjust the duration and timing function as needed */
+        /* Define spinning animation */
+        .spin {
+            animation: spin 5s linear infinite;
         }
 
         @keyframes spin {
@@ -51,31 +36,86 @@
             }
         }
 
+        /* Rainbow animation */
+        @keyframes rainbow {
+            0% {
+                background-position: 0 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Positioning for the bottom left corner */
+        .bottom-left {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
     </style>
 </head>
 
 <body>
+<!-- Dog image with onclick event to trigger animation -->
+<img src="funnydog.png" class="dog-img" onclick="startAnimation()">
+<div class="bottom-left">
+    <a href="https://funnydog.online/"><img src="https://cdn.jsdelivr.net/gh/disukomusic/cdn/88x31s/funnydog.png"></a>
+</div>
+
+<script>
+    var backgrounds = [
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%20524.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%20539.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%20569.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%20588.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%20576.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%20529.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/snowflakes.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%20100.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%2098.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%2056.gif",
+        "https://bettysgraphics.neocities.org/images/backgrounds/pattern%2058.gif"
+    ];
+
+    function startAnimation() {
+        // Start spinning the dog by adding the 'spin' class
+        document.querySelector('.dog-img').classList.add('spin');
+
+        // Play the audio
+        var audio = document.getElementById('bgAudio');
+        audio.play();
+
+        // Remove the onclick event to prevent multiple clicks
+        document.querySelector('.dog-img').removeAttribute('onclick');
+
+        // Start the background animation
+        startBackgroundAnimation();
+    }
+
+    function startBackgroundAnimation() {
+        var index = 0;
+        setInterval(function() {
+            document.body.style.backgroundImage = "url('" + backgrounds[index] + "')";
+            index = (index + 1) % backgrounds.length;
+        }, 4000);
+    }
+
+    // Title animation script
+    var titles = ["funny dog online!", "unny dog online! f", "nny dog online! fu", "ny dog online! fun", "y dog online! funny", "dog online! funny ", "og online! funny d", "g online! funny do", " online! funny dog", "online! funny dog ", "nline! funny dog o", "line! funny dog on", "ine! funny dog onl", "ne! funny dog onli", "e! funny dog onlin", "! funny dog online"];
+    var titleIndex = 0;
+    function toggleTitle() {
+        document.title = titles[titleIndex];
+        titleIndex = (titleIndex + 1) % titles.length;
+    }
+    setInterval(toggleTitle, 50);
+</script>
+
+<!-- Audio element -->
 <audio id="bgAudio" loop>
     <source src="./funkytown.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
-    <img src="funnydog.png" onclick="playAudio()">
-<script>
-    function playAudio() {
-        var audio = document.getElementById('bgAudio');
-        audio.play();
-        // Remove the onclick event to prevent multiple plays
-        document.querySelector('img').removeAttribute('onclick');
-    }
-</script>
 </body>
 
-<script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById('bgAudio').play();
-    });
-</script>
-
 </html>
-
